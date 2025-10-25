@@ -6,15 +6,16 @@ interface AnimatedCardProps {
   children: ReactNode
   className?: string
   delay?: number
+  onClick?: () => void
 }
 
-const AnimatedCard = ({ children, className = '', delay = 0 }: AnimatedCardProps) => {
+const AnimatedCard = ({ children, className = '', delay = 0, onClick }: AnimatedCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       whileHover={{ y: -5, scale: 1.02 }}
-      transition={{ 
+      transition={{
         type: "spring",
         stiffness: 300,
         damping: 20,
@@ -22,6 +23,7 @@ const AnimatedCard = ({ children, className = '', delay = 0 }: AnimatedCardProps
       }}
       viewport={{ once: true }}
       className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden ${className}`}
+      onClick={onClick}
     >
       {children}
     </motion.div>
